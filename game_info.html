@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Game Info</title>
+    <link rel="stylesheet" href="style/game_info.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style/cursor.css" />
+
+  </head>
+  <body>
+    <header>
+      <h1 class="glitter-text">Mystic Match Game</h1>
+    </header>
+
+    <!-- Video & Side Images -->
+    <main class="content">
+      <div class="side-images left">
+        <img src="assets/info_assets/pic1.png" alt="Game Image 1" />
+        <img src="assets/info_assets/pic2.png" alt="Game Image 2" />
+      </div>
+
+      <div class="video-section">
+        <video
+          id="gameVideo"
+          src="assets/info_assets/video.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+      </div>
+
+      <div class="side-images right">
+        <img src="assets/info_assets/pic3.png" alt="Game Image 3" />
+      </div>
+    </main>
+
+    <section class="game-info">
+      <h2>🎯 Game Info</h2>
+      <p style="font-size: 1.2rem">
+        Memory Game is a fun card-matching challenge designed to test and
+        improve your focus and recall abilities. The goal is simple: find all
+        matching card pairs in the shortest possible time and with the fewest
+        moves. Players flip two cards at a time, trying to remember their
+        positions. If the cards match, they stay flipped; if not, they flip back
+        down. Your aim is to complete the game with the highest score possible
+        while sharpening your concentration and memory power.
+      </p>
+    </section>
+
+    <section class="game-info">
+      <h2>📜 Rules</h2>
+      <ul style="font-size: 1.2rem">
+        <li>
+          <strong>Easy Mode :</strong> Infinite moves & time, 6 pairs of cards thus You Will Never Loss
+        </li>
+        <li>
+          <strong>Medium Mode :</strong> Limited moves [20 Moves] & infinite time, 8 pairs
+          of cards
+        </li>
+        <li>
+          <strong>Hard Mode :</strong> Limited moves [35 Moves] & time [3 minute], 10 pairs of cards
+        </li>
+        <h3 id="bestluck">Best Of Luck&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+
+      </ul>
+    </section>
+
+    <section class="play-section game-info">
+      <h2>Select Mode & Play</h2>
+      <div class="modes">
+        <label
+          ><input type="radio" name="mode" value="easy" checked /> Easy</label
+        >
+        <label><input type="radio" name="mode" value="medium" /> Medium</label>
+        <label><input type="radio" name="mode" value="hard" /> Hard</label>
+        <button class="play-btn" onclick="startGame()">Play</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>Made with ❤️ by Mrugmai Dudhamande</p>
+      <div class="footer-links">
+        <a href="https://www.codechef.com/users/loser_bird_23" target="_blank"
+          ><i class="fa-solid fa-utensils"></i
+        ></a>
+        <a href="https://codeforces.com/profile/Loser_bird_23" target="_blank"
+          ><i class="fa-solid fa-code"></i
+        ></a>
+        <a href="https://leetcode.com/u/ux01bwiD1I/" target="_blank"
+          ><i class="fa-solid fa-laptop-code"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/mrugmai-dudhamande-0352642b4/"
+          target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a href="mailto:mrugmaidudhamande@gmail.com"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
+        <a href="https://discordapp.com/users/1382324287620518010"
+          ><i class="fab fa-discord"></i
+        ></a>
+        <a href="https://github.com/MRUGMAIDUDHAMANDE" target="_blank"
+          ><i class="fab fa-github"></i
+        ></a>
+      </div>
+    </footer>
+
+    <script src="script/game_info.js"></script>
+  </body>
+</html>

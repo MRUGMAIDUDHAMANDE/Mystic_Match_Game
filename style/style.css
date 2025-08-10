@@ -1,0 +1,360 @@
+/* Login-Page Css */
+
+html {
+  font-size: 100%; /* 1rem = 16px */
+}
+
+body {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  padding: 0.125rem; /* 2px */
+  margin: 0.625rem; /* 10px */
+}
+
+div {
+  margin: 0.5rem;
+}
+
+.page-wrap {
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+}
+
+.card {
+  box-shadow: 0 0 0.75rem rgba(0, 123, 255, 0.9);
+  border-radius: 1rem;
+  padding: 2rem;
+  background: #1c1f26;
+  width: 90%;
+  max-width: 28rem;
+  color: white;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0dcaf0;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.flag-img {
+  width: 3rem;
+  height: auto;
+  margin-left: 1rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.3rem;
+  background: #fff;
+}
+
+.country-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#ageDisplay {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #0dcaf0;
+  background: rgba(13, 202, 240, 0.15);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  margin-top: 0.4rem;
+  display: inline-block;
+}
+
+#submitBtn {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+  height: 3.5rem;
+}
+
+#submitBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.8rem 1.2rem rgba(0, 198, 255, 0.6);
+  animation: pulse 1s infinite;
+}
+
+#submitBtn:active {
+  transform: scale(0.97);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0.3rem 0.7rem rgba(0, 198, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 198, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0.7rem 1.1rem rgba(0, 198, 255, 0.4);
+  }
+}
+
+/* Game Page CSS */
+
+:root {
+  --bg: #07070a;
+  --card-bg: #0f1720;
+  --accent: #00c6ff;
+  --accent-2: #007bff;
+  --glass: rgba(13, 202, 240, 0.08);
+  --card-radius: 0.6rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #020205 0%, #0a0b0f 100%);
+  color: #e6eef6;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  height: 11vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding: 1rem;
+  font-size: 4vh;
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(60, 48, 48, 0.5);
+}
+
+.player-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mode-tag {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  color: #001;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  padding: 0.35rem 0.5rem;
+}
+
+.status {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.status-item {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  width: 10vh;
+  height: 6vh;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  color: #001;
+  border: 0;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.45rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.btn.small {
+  padding: 0.35rem 0.5rem;
+  font-size: 1.05rem;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.board-container {
+  width: 100%;
+  max-width: 62.5rem;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.board {
+  display: grid;
+  gap: 0.75rem;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+}
+
+.card-item {
+  perspective: 62.5rem;
+  box-shadow: #00c6ff 0 0 2.2rem rgba(0, 198, 255, 0.6);
+  width: 7.5rem;
+  height: auto;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 0.5rem;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-front {
+  background: #007bff;
+  color: white;
+  font-size: 2rem;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0.3125rem 0.3125rem 0.9375rem 0.3125rem rgba(0, 123, 255, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-inner:hover .card-front {
+  transform: scale(1.15);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: #959d9e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  height: 85%;
+  outline: 0.125rem solid whitesmoke;
+}
+
+.card-back img {
+  width: 95%;
+  height: 95%;
+  object-fit: contain;
+  outline: 0.125rem solid rgb(237, 204, 204);
+}
+
+.card-inner.matched {
+  box-shadow: 0 0 1rem rgba(0, 200, 120, 0.12);
+  outline: 0.125rem solid rgb(237, 204, 204);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 2, 6, 0.6);
+  backdrop-filter: blur(0.1875rem);
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay-card {
+  background: linear-gradient(180deg, #0f1720, #0b0f14);
+  color: #fff;
+  padding: 3.5rem;
+  border-radius: 0.9rem;
+  max-width: 70vh;
+  width: 90%;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.6);
+  border: 0.0625rem solid rgba(39, 150, 220, 0.907);
+  outline: 0.1875rem solid rgba(39, 150, 220, 0.907);
+}
+
+.overlay-card h2 {
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+}
+
+.stats-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.stats-list li {
+  padding: 0.8rem 0;
+  border-bottom: 0.0625rem dotted rgba(26, 132, 132, 0.751);
+  font-weight: 600;
+}
+
+@media (min-width: 37.5rem) {
+  .board {
+    gap: 1rem;
+  }
+}

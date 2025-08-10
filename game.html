@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/cursor.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="player-info">
+        <span id="playerName">Player</span>
+        <span id="modeTag" class="mode-tag">Mode</span>
+      </div>
+      <div class="status">
+        <div class="status-item">Moves: <span id="movesCount">0</span></div>
+        <div class="status-item">Matches: <span id="matchesCount">0</span></div>
+        <div class="status-item">
+          Timer: <span id="timerDisplay">00:00</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="restartBtn" class="btn small">Restart</button>
+        <button id="backBtn" class="btn small">Back</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="boardContainer" class="board-container">
+        <div id="board" class="board"></div>
+      </section>
+    </main>
+
+    <div
+      id="resultOverlay"
+      class="overlay hidden"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="overlay-card">
+        <h2 id="resultTitle">You Won!</h2>
+        <p id="resultMessage"></p>
+        <ul id="resultStats" class="stats-list"></ul>
+        <div class="overlay-actions">
+          <button id="replayBtn" class="btn">Replay</button>
+          <button id="infoBtn" class="btn outline">Back to Info</button>
+        </div>
+      </div>
+    </div>
+    <h1 id="greeting"></h1>
+
+    <script>
+      const playerName = sessionStorage.getItem("firstName") || "Player";
+    </script>
+
+    <script src="script/game.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+body,
+input,
+textarea,
+button,
+select,
+label,
+a {
+  cursor: url("../assets/logos/cursor.png") 18 18, default;
+}
