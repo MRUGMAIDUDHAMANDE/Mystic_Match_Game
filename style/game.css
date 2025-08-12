@@ -11,7 +11,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   max-height: 100%;
 }
 
@@ -27,10 +28,10 @@ body {
   min-height: 100vh;
 }
 
-/* Top Bar */
 .topbar {
   margin-top: 3vh;
   max-height: 11vh;
+  max-height: 90%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -43,6 +44,7 @@ body {
   top: 0;
   z-index: 999;
   background: rgba(60, 48, 48, 0.5);
+  
 }
 
 .player-info {
@@ -51,13 +53,18 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
+#playerName {
+  font-weight: 700;
+  color: #fff;
+  font-size: 4vw;
+}
 
 .mode-tag {
   background: linear-gradient(90deg, var(--accent-2), var(--accent));
   color: #001;
   border-radius: 0.4rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 2vh;
   white-space: nowrap;
   padding: 0.35rem 0.5rem;
 }
@@ -67,12 +74,11 @@ body {
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 0.95rem;
+  font-size: 2vw;
 }
 
 .status-item {
   font-weight: 600;
-  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.85);
 }
 
@@ -97,7 +103,7 @@ body {
 
 .btn.small {
   padding: 0.35rem 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1.0rem;
 }
 
 .btn.outline {
@@ -118,8 +124,8 @@ body {
 }
 
 .board-container {
-  max-width: 50%;
-  padding: 1rem;
+  max-width: 90%;
+  padding: 2rem;
   overflow: auto;
 }
 
@@ -132,10 +138,12 @@ body {
 }
 
 .card-item {
-  perspective: 62.5rem;
   box-shadow: #00c6ff 0 0 2.2rem rgba(0, 198, 255, 0.6);
-  width: 7.5rem;
-  padding-bottom: 100%;
+  width: 6.5rem;
+  max-width: 10rem;
+  height: 8.5rem;
+  max-height: 10rem;
+  padding: 20%;
   position: relative;
 }
 
@@ -198,7 +206,6 @@ body {
   outline: 0.125rem solid rgb(237, 204, 204);
 }
 
-/* Overlay */
 .overlay {
   position: fixed;
   inset: 0;

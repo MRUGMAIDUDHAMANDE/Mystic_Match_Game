@@ -106,7 +106,7 @@
 
       const front = document.createElement("div");
       front.className = "card-face card-front";
-      front.innerHTML = `<div style="font-size:3.8rem;">❤️🎗️</div>`;
+      front.innerHTML = `<div style="font-size:260%;">❤️🎗️</div>`;
       // 🎆🎗️🎊💎🎴💡🪙
       const back = document.createElement("div");
       back.className = "card-face card-back";
