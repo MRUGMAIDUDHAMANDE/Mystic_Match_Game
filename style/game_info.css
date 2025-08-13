@@ -44,8 +44,11 @@ header {
 }
 
 .modes {
-  margin: 1rem 0;
-  gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .modes label {
@@ -166,7 +169,7 @@ video {
 
 .game-info h2 {
   color: #82b2e9f3;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(2rem, 2.5rem, 3.5rem);
 }
 
 footer {

@@ -1,8 +1,8 @@
 window.addEventListener("scroll", function () {
   const video = document.querySelector("#gameVideo");
   const scrollPos = window.scrollY;
-  const scale = 1 + scrollPos / 900;
-  video.style.transform = `scale(${Math.min(scale, 1.8)})`;
+  const scale = 0.8 + scrollPos / 300;
+  video.style.transform = `scale(${Math.min(scale, 1.3)})`;
 });
 
 function startGame() {
