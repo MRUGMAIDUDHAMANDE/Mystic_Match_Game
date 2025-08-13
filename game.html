@@ -15,12 +15,8 @@
       </div>
       <div class="status">
         <div class="status-item">Moves : <span id="movesCount">0</span></div>
-        <div class="status-item">
-          Matches : <span id="matchesCount">0</span>
-        </div>
-        <div class="status-item">
-          Timer : <span id="timerDisplay">00:00</span>
-        </div>
+        <div class="status-item">Matches : <span id="matchesCount">0</span></div>
+        <div class="status-item">Timer : <span id="timerDisplay">00:00</span></div>
       </div>
       <div class="controls">
         <button id="restartBtn" class="btn small">Restart</button>
@@ -30,17 +26,12 @@
 
     <main class="main">
       <section id="boardContainer" class="board-container">
-        <div id="board" class="board"></div>
+        <div id="board" class="board" aria-label="Memory board"></div>
       </section>
     </main>
 
-    <div
-      id="resultOverlay"
-      class="overlay hidden"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div class="overlay-card">
+    <div id="resultOverlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-card" role="document">
         <h2 id="resultTitle">You Won!</h2>
         <p id="resultMessage"></p>
         <ul id="resultStats" class="stats-list"></ul>
@@ -50,11 +41,11 @@
         </div>
       </div>
     </div>
+
     <h1 id="greeting"></h1>
 
-    <script>
-      const playerName = sessionStorage.getItem("firstName") || "Player";
-    </script>
+    <audio id="buzzerAudio" src="assets/sounds/buzzer.mp3" preload="auto"></audio>
+    <audio id="winAudio" src="assets/sounds/win.mp3" preload="auto"></audio>
 
     <script src="script/game.js" defer></script>
   </body>

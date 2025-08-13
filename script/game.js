@@ -1,17 +1,9 @@
 (() => {
-  const IMAGE_COUNT = 14; // 14 Images
-  const IMAGE_PATH = (idx) => `assets/cards/card${idx}.png`; // 1-based index
+  const IMAGE_COUNT = 14;
+  const IMAGE_PATH = (idx) => `assets/cards/card${idx}.png`;
   const DEFAULT_HARD_TIME = 180;
-  const PAIR_COUNTS = {
-    easy: 6,
-    medium: 8,
-    hard: 10,
-  };
-  const MOVE_LIMIT_FACTOR = {
-    easy: Infinity,
-    medium:2.5,
-    hard:3.5,
-  };
+  const PAIR_COUNTS = { easy: 6, medium: 8, hard: 10 };
+  const MOVE_LIMIT_FACTOR = { easy: Infinity, medium: 2.5, hard: 3.5 };
 
   const board = document.getElementById("board");
   const movesCountEl = document.getElementById("movesCount");
@@ -27,7 +19,7 @@
   const modeTag = document.getElementById("modeTag");
   const restartBtn = document.getElementById("restartBtn");
   const backBtn = document.getElementById("backBtn");
-
+  const greetingEl = document.getElementById("greeting");
   const buzzerAudio = document.getElementById("buzzerAudio");
   const winAudio = document.getElementById("winAudio");
 
@@ -42,7 +34,7 @@
   let maxMoves =
     MOVE_LIMIT_FACTOR[gameMode] === Infinity
       ? Infinity
-      : pairs * MOVE_LIMIT_FACTOR[gameMode];
+      : Math.floor(pairs * MOVE_LIMIT_FACTOR[gameMode]);
   let hardTime = DEFAULT_HARD_TIME;
 
   let cardImages = [];
@@ -53,11 +45,11 @@
   let matches = 0;
   let totalPairs = pairs;
   let timerInterval = null;
-  let timeElapsed = 0; // seconds
+  let timeElapsed = 0;
   let timeRemaining = hardTime;
   let countdownMode = gameMode === "hard";
-  let buzzerThreshold = 10; // seconds left when buzzer plays
-  let buzzerPlaying = false;
+  let buzzerThreshold = 10;
+  let buzzerPlayed = false;
   let movesRemaining = maxMoves;
 
   function formatTime(seconds) {
@@ -69,7 +61,6 @@
   }
 
   function shuffle(array) {
-    // Fisher-Yates Algorithm
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -84,58 +75,64 @@
     return chosen.map((i) => IMAGE_PATH(i));
   }
 
+  function renderCard(imgSrc, idx) {
+    const item = document.createElement("div");
+    item.className = "card-item";
+    item.dataset.index = idx;
+    item.dataset.image = imgSrc;
+
+    const inner = document.createElement("div");
+    inner.className = "card-inner";
+    inner.tabIndex = 0;
+    inner.setAttribute("role", "button");
+    inner.setAttribute("aria-pressed", "false");
+
+    const front = document.createElement("div");
+    front.className = "card-face card-front";
+    front.innerHTML = `<div class="card-content">❤️🎗️</div>`;
+
+    const back = document.createElement("div");
+    back.className = "card-face card-back";
+    const imgel = document.createElement("img");
+    imgel.src = imgSrc;
+    imgel.alt = "card";
+    back.appendChild(imgel);
+
+    inner.appendChild(front);
+    inner.appendChild(back);
+    item.appendChild(inner);
+    return item;
+  }
+
   function buildBoard() {
     const chosen = pickRandomImages(pairs);
     const duplicated = chosen.concat(chosen);
     cardImages = shuffle(duplicated.slice());
 
-    const totalCards = cardImages.length;
-    const cols = Math.ceil(Math.sqrt(totalCards));
-    board.style.gridTemplateColumns = `repeat(${cols}, minmax(80px, 1fr))`;
-
     board.innerHTML = "";
     cardImages.forEach((imgSrc, idx) => {
-      const item = document.createElement("div");
-      item.className = "card-item";
-      item.dataset.index = idx;
-      item.dataset.image = imgSrc;
-
-      const inner = document.createElement("div");
-      inner.className = "card-inner";
-      inner.tabIndex = 0;
-
-      const front = document.createElement("div");
-      front.className = "card-face card-front";
-      front.innerHTML = `<div style="font-size:260%;">❤️🎗️</div>`;
-      // 🎆🎗️🎊💎🎴💡🪙
-      const back = document.createElement("div");
-      back.className = "card-face card-back";
-      const imgel = document.createElement("img");
-      imgel.src = imgSrc;
-      imgel.alt = "card";
-      back.appendChild(imgel);
-
-      inner.appendChild(front);
-      inner.appendChild(back);
-      item.appendChild(inner);
-      board.appendChild(item);
-
-      inner.addEventListener("click", () => onCardClick(inner));
-      inner.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onCardClick(inner);
-        }
-      });
+      const node = renderCard(imgSrc, idx);
+      board.appendChild(node);
     });
   }
 
-  function onCardClick(cardInner) {
+  function flipCard(cardInner, state) {
+    if (state) {
+      cardInner.classList.add("flipped");
+      cardInner.setAttribute("aria-pressed", "true");
+    } else {
+      cardInner.classList.remove("flipped");
+      cardInner.setAttribute("aria-pressed", "false");
+    }
+  }
+
+  function onCardActivate(cardInner) {
     if (boardLocked) return;
+    if (!cardInner || !cardInner.parentElement) return;
     if (cardInner === firstCard) return;
     if (cardInner.classList.contains("matched")) return;
 
-    cardInner.classList.add("flipped");
+    flipCard(cardInner, true);
 
     if (!firstCard) {
       firstCard = cardInner;
@@ -146,11 +143,9 @@
     boardLocked = true;
 
     moves++;
-
     if (gameMode === "medium" || gameMode === "hard") {
       movesRemaining--;
     }
-
     updateMovesDisplay();
 
     const imgA = firstCard.parentElement.dataset.image;
@@ -166,36 +161,30 @@
         secondCard = null;
         boardLocked = false;
         checkEnd();
-      }, 350);
+      }, 300);
     } else {
       setTimeout(() => {
-        firstCard.classList.remove("flipped");
-        secondCard.classList.remove("flipped");
+        flipCard(firstCard, false);
+        flipCard(secondCard, false);
         firstCard = null;
         secondCard = null;
         boardLocked = false;
         checkEnd();
-      }, 700);
+      }, 650);
     }
   }
 
   function startTimer() {
     if (countdownMode) {
+      buzzerPlayed = false;
+      timeRemaining = DEFAULT_HARD_TIME;
       timerDisplay.textContent = formatTime(timeRemaining);
       timerInterval = setInterval(() => {
         timeRemaining--;
-
-        if (timeRemaining <= buzzerThreshold && timeRemaining > 0) {
-          if (buzzerAudio && !buzzerPlaying) {
-            buzzerPlaying = true;
-            buzzerAudio.play().catch(() => {});
-
-            setTimeout(() => {
-              buzzerAudio.pause();
-              buzzerAudio.currentTime = 0;
-              buzzerPlaying = false;
-            }, 900);
-          }
+        if (timeRemaining === buzzerThreshold && buzzerAudio && !buzzerPlayed) {
+          buzzerPlayed = true;
+          buzzerAudio.currentTime = 0;
+          buzzerAudio.play().catch(() => {});
         }
         if (timeRemaining <= 0) {
           clearInterval(timerInterval);
@@ -223,10 +212,9 @@
   function checkEnd() {
     if (matches === totalPairs) {
       stopTimer();
-      setTimeout(() => showResult(true), 250);
+      setTimeout(() => showResult(true), 200);
       return;
     }
-
     if (gameMode === "medium" || gameMode === "hard") {
       if (movesRemaining <= 0) {
         stopTimer();
@@ -243,6 +231,7 @@
 
   function showResult(won, reason) {
     resultOverlay.classList.remove("hidden");
+    requestAnimationFrame(() => resultOverlay.classList.add("show"));
     if (won) {
       resultTitle.textContent = "You Won! 🎉";
       resultMessage.textContent = "Great job — you matched all pairs.";
@@ -261,14 +250,8 @@
     resultStats.innerHTML = "";
     const timeStat = document.createElement("li");
     if (countdownMode) {
-      const used = formatTime(hardTime - timeRemaining);
-      timeStat.textContent = `Time: ${
-        countdownMode && !won && reason === "time"
-          ? formatTime(0)
-          : won
-          ? used
-          : formatTime(hardTime - timeRemaining)
-      }`;
+      const used = hardTime - timeRemaining;
+      timeStat.textContent = `Time: ${won ? formatTime(used) : "00:00"}`;
     } else {
       timeStat.textContent = `Time: ${formatTime(timeElapsed)}`;
     }
@@ -278,7 +261,7 @@
     movesStat.textContent =
       maxMoves === Infinity
         ? `Moves: ${moves}`
-        : `Moves => ${won ? "(Used)" : ` Remaining : ${movesRemaining} `}`;
+        : `Moves Left: ${Math.max(0, movesRemaining)}`;
     resultStats.appendChild(movesStat);
 
     if (!won && reason) {
@@ -290,28 +273,16 @@
     }
   }
 
-  replayBtn?.addEventListener("click", () => {
-    resultOverlay.classList.add("hidden");
-    resetAndStart();
-  });
-
-  infoBtn?.addEventListener("click", () => {
-    location.href = "game_info.html";
-  });
-
-  restartBtn?.addEventListener("click", () => {
-    resetAndStart();
-  });
-
-  backBtn?.addEventListener("click", () => {
-    location.href = "game_info.html";
-  });
+  function hideOverlay() {
+    resultOverlay.classList.remove("show");
+    setTimeout(() => resultOverlay.classList.add("hidden"), 300);
+  }
 
   function updateMovesDisplay() {
     if (gameMode === "easy") {
       movesCountEl.textContent = moves;
     } else {
-      movesCountEl.textContent = movesRemaining;
+      movesCountEl.textContent = Math.max(0, movesRemaining);
     }
   }
 
@@ -337,14 +308,45 @@
     maxMoves =
       MOVE_LIMIT_FACTOR[gameMode] === Infinity
         ? Infinity
-        : pairs * MOVE_LIMIT_FACTOR[gameMode];
+        : Math.floor(pairs * MOVE_LIMIT_FACTOR[gameMode]);
     countdownMode = gameMode === "hard";
     timeRemaining = DEFAULT_HARD_TIME;
-
+    modeTag.textContent = gameMode.toUpperCase();
     resetState();
     buildBoard();
-    setTimeout(() => startTimer(), 300);
+    setTimeout(() => startTimer(), 250);
   }
+
+  board.addEventListener("click", (e) => {
+    const inner = e.target.closest(".card-inner");
+    if (!inner || !board.contains(inner)) return;
+    onCardActivate(inner);
+  });
+
+  board.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const inner = e.target.closest(".card-inner");
+    if (!inner || !board.contains(inner)) return;
+    e.preventDefault();
+    onCardActivate(inner);
+  });
+
+  replayBtn?.addEventListener("click", () => {
+    hideOverlay();
+    resetAndStart();
+  });
+
+  infoBtn?.addEventListener("click", () => {
+    location.href = "game_info.html";
+  });
+
+  restartBtn?.addEventListener("click", () => {
+    if (confirm("Restart the game?")) resetAndStart();
+  });
+
+  backBtn?.addEventListener("click", () => {
+    location.href = "game_info.html";
+  });
 
   resetAndStart();
 })();
