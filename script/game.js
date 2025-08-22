@@ -23,6 +23,7 @@
   const buzzerAudio = document.getElementById("buzzerAudio");
   const winAudio = document.getElementById("winAudio");
 
+
   let gameMode = new URLSearchParams(location.search).get("mode") || "easy";
   gameMode = ["easy", "medium", "hard"].includes(gameMode) ? gameMode : "easy";
   modeTag.textContent = gameMode.toUpperCase();
