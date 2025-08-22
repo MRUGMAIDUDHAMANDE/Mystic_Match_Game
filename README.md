@@ -56,14 +56,12 @@ Mystic_Match_Game/
  ┃ ┣ 📂 cards/            
  ┃ ┣ 📂 info_assets/      
  ┃ ┣ 📂 logos/ 
- | |
  
  ┣ 📂 script/                 
  ┃ ┗ 📜 config.js           
  ┃ ┗ 📜 game_info.js           
  ┃ ┗ 📜 game.js            
  ┃ ┗ 📜 login.js
- | |
  
  ┣ 📂 style/                
  ┃ ┣ 📜 cursor.css         
@@ -71,12 +69,10 @@ Mystic_Match_Game/
  ┃ ┣ 📜 game.css 
  ┃ ┣ 📜 index.css  
  ┃ ┗ 📜 style.css  
- | | 
  
  ┣ 📜 index.html          
  ┣ 📜 game.html   
- ┣ 📜 game_info.html           
- | |                               
+ ┣ 📜 game_info.html                                         
  ┗ 📜 README.md 
 
  ## 🌍 Live Demo
