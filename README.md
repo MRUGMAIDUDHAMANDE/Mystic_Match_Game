@@ -38,8 +38,8 @@ Choose your difficulty and test your skills.
 
 ## 📊 Performance Tracking
 At the end of each game, you can view:  
-- Total moves taken  ---|-- According to Mode
-- Time spent         ---|
+- Total moves taken  --> According to Mode
+- Time spent         --> According to Mode
 - Whether you won or lost (Medium/Hard only)  
 
 ## 🛠️ Tech Stack
