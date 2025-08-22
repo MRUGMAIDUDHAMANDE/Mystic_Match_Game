@@ -51,17 +51,20 @@ At the end of each game, you can view:
 ## 📂 Project File Structure
 
 Mystic_Match_Game/
+
  ┣ 📂 assets/             
  ┃ ┣ 📂 cards/            
  ┃ ┣ 📂 info_assets/      
  ┃ ┣ 📂 logos/ 
  | |
+ 
  ┣ 📂 script/                 
  ┃ ┗ 📜 config.js           
  ┃ ┗ 📜 game_info.js           
  ┃ ┗ 📜 game.js            
  ┃ ┗ 📜 login.js
  | |
+ 
  ┣ 📂 style/                
  ┃ ┣ 📜 cursor.css         
  ┃ ┣ 📜 game_info.css          
@@ -69,6 +72,7 @@ Mystic_Match_Game/
  ┃ ┣ 📜 index.css  
  ┃ ┗ 📜 style.css  
  | | 
+ 
  ┣ 📜 index.html          
  ┣ 📜 game.html   
  ┣ 📜 game_info.html           
